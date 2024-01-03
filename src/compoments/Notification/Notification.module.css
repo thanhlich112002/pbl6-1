@@ -1,0 +1,83 @@
+.container {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.Notifications {
+    width: 40%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px rgb(188, 188, 188);
+    overflow-y: auto;
+}
+
+.notification {
+    width: 100%;
+    padding: 2px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+}
+
+.notification:hover {
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    display: flex;
+    gap: 10px;
+    background-color: #ededed;
+}
+
+.notification .span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.infomative {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 5px;
+}
+
+.seed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-weight: 550;
+}
+
+.mes {
+    width: 450px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.Img {
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Img img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+}

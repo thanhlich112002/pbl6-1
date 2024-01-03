@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -40,90 +40,99 @@ import CartOrder from './pages/Cart/CartOrder/CartOrder';
 import ThankOrder from './pages/ThankOrder/ThankOrder';
 import StoreManage from './compoments/Store/StoreManage/StoreManage';
 import Homeshipper from './pages/Shipper/Homeshipper/Homeshipper'
+import Notification from './compoments/Notification/Notification';
+import { ChatContext } from './compoments/Notification/NotificationProvider';
+import { ChatContextProvider } from './compoments/Notification/NotificationProvider'
 const queryClient = new QueryClient()
 
 const App = () => {
   const [openChat, setOpenChat] = useState(false)
-  const Layout = () =>{
+  const Layout = () => {
     const isAdminPage = useLocation().pathname.includes('/admin');
     const isStorePage = useLocation().pathname.includes('/store');
     const isLoginPage = useLocation().pathname.includes('/login');
     const isRegisterPage = useLocation().pathname.includes('/register');
     console.log(openChat)
     return (
-      <QuantityProvider>
+      <ChatContextProvider>
+        <QuantityProvider>
           <QueryClientProvider client={queryClient}>
-          <div className="app">
-            {!isAdminPage && !isLoginPage && !isRegisterPage && !isStorePage && (<Header setOpenChat={setOpenChat} />)}
-            {isAdminPage && <SliderMenu />}
-            <Outlet />
-            {!isAdminPage && !isLoginPage && !isRegisterPage && (<Footer />)}
-            <ToastContainer />
-          </div>
-        </QueryClientProvider>
-      </QuantityProvider>
+            <div className="app">
+              {!isAdminPage && !isLoginPage && !isRegisterPage && !isStorePage && (<Header setOpenChat={setOpenChat} />)}
+              {isAdminPage && <SliderMenu />}
+              <Outlet />
+              {!isAdminPage && !isLoginPage && !isRegisterPage && (<Footer />)}
+              <ToastContainer />
+            </div>
+          </QueryClientProvider>
+        </QuantityProvider>
+      </ChatContextProvider>
     )
   }
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout/>,
-      children : [
+      element: <Layout />,
+      children: [
         {
           path: '/',
-          element : <Home openChat={openChat} setOpenChat={setOpenChat}/>
+          element: <Home openChat={openChat} setOpenChat={setOpenChat} />
         },
         {
           path: '/home/more',
-          element : <HomeDetail/>
+          element: <HomeDetail />
         },
         {
-          path : '/login',
-          element: <Login/>
+          path: '/login',
+          element: <Login />
         },
         {
           path: '/register',
-          element: <Register/>
+          element: <Register />
         },
         {
           path: '/booklist',
-          element: <BookList/>
+          element: <BookList />
         },
         {
           path: '/productinformation',
           element: <ProductInf />
         },
         {
+          path: '/Notifications',
+          element: <Notification />
+        },
+        {
           path: '/cart',
-          element: <Cart/>
+          element: <Cart />
         },
         {
           path: '/order/:id',
           element: <Order />
         },
         {
-          path : '/orderCart',
-          element :<CartOrder />
+          path: '/orderCart',
+          element: <CartOrder />
         },
         {
-          path : '/thankOrder',
-          element :<ThankOrder />
+          path: '/thankOrder',
+          element: <ThankOrder />
         },
         {
           path: '/profile',
-          element: <Profile/>
+          element: <Profile />
         },
         {
           path: '/viewstore/:id',
-          element: <ViewStore/>
+          element: <ViewStore />
         },
         {
           path: '/store/home',
-          element: <HomeStore/>
+          element: <HomeStore />
         },
         {
           path: '/store/storemanage',
-          element: <StoreManage/>
+          element: <StoreManage />
         },
         {
           path: '/admin/login',
@@ -142,19 +151,19 @@ const App = () => {
           element: <Store />
         },
         {
-          path : '/admin/requestStore',
+          path: '/admin/requestStore',
           element: <RequestStore />
         },
         {
-          path : '/admin/report',
+          path: '/admin/report',
           element: <ReportPage />
         },
         {
-          path : '/admin/satistical',
+          path: '/admin/satistical',
           element: <Satistical />
         },
         {
-          path : '/admin/voucher',
+          path: '/admin/voucher',
           element: <Voucher />
         },
         {
